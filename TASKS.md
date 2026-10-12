@@ -52,6 +52,12 @@
   - [x] **Home Fresh Arrivals Controls**: Interactive category tabs (All, Ladies, Gents, Sale, New In) and live sorting directly on the homepage showcase.
   - [x] **VIP Newsletter Signup**: Integrated newsletter system with 10% OFF voucher coupon code (`FREDO10`), clipboard copy, shopping department preferences, and `localStorage` persistence in both `NewsletterSection` and `Footer`.
   - [x] **High-Resolution Product Gallery Hover-to-Zoom**: Built `ProductGallery` with interactive cursor-tracking magnification lens (2x, 2.6x, 3.2x zoom levels), photo navigation arrows, active thumbnail strip, and full-screen high-resolution lightbox with panning and keyboard shortcuts on `ProductDetails` and `QuickViewModal`.
+  - [x] **Real Store Inventory Imagery**: Integrated authentic stock assets corresponding to the store's physical catalog across all pages:
+    - *Gents Wool Shadar (Chadar Shawl)*: Handcrafted lambswool chadar in natural cream and jet black with traditional geometric woven border stripes & tassel fringes.
+    - *J. Asli Sona Gents Collection*: Deep olive bottle green textured kurta shalwar with mandarin band collar.
+    - *Bin Saeed Vol-213 Luxury Dhanak Collection*: Dyed Dhanak full embroidered front shirts (Mustard Ochre & Burgundy Maroon) with plush Velvet Palachi shawls.
+    - *Mother Care 3-Piece Unstitched Dhanak Collection*: Ivory and peach allover printed shirts and trousers with Dhanak printed dupattas.
+    - *Artisanal Textiles & Unstitched Rolls*: Chunri geometric prints, scarlet sunflower botanicals, and antique teal roses.
 
 ## Future Enhancements
 - [ ] Support custom gift packaging selection in cart.

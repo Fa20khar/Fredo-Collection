@@ -38,8 +38,8 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const imageList = images.length > 0 ? images : [
     gender === 'ladies'
-      ? 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80'
-      : 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80',
+      ? '/images/ladies_bin_saeed.jpg'
+      : '/images/gents_wool_shadar.jpg',
   ];
 
   const currentImage = imageList[selectedIndex] || imageList[0];
@@ -137,8 +137,8 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({
 
   const fallbackUrl =
     gender === 'ladies'
-      ? 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=85'
-      : 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=85';
+      ? '/images/ladies_bin_saeed.jpg'
+      : '/images/gents_wool_shadar.jpg';
 
   return (
     <div className={`space-y-4 ${className}`}>

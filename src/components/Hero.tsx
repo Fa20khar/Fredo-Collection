@@ -8,9 +8,9 @@ export const Hero: React.FC = () => {
       {/* Background Image with Scrim */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80"
+          src="/images/hero.jpg"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = '/images/hero.jpg';
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80';
           }}
           alt="Fredo's Collection Pakistani Haute Couture"
           referrerPolicy="no-referrer"

@@ -57,22 +57,22 @@ export const About: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl overflow-hidden aspect-3/4 shadow-sm border border-[#E8E4DD]">
               <img
-                src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80"
+                src="/images/ladies_bin_saeed.jpg"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = '/images/ladies_embroidered.jpg';
                 }}
-                alt="Ladies Embroidered Suit"
+                alt="Ladies Bin Saeed Dhanak Suit"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="rounded-xl overflow-hidden aspect-3/4 shadow-sm border border-[#E8E4DD] mt-6">
               <img
-                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
+                src="/images/gents_wool_shadar.jpg"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/images/gents_kurta.jpg';
+                  (e.target as HTMLImageElement).src = '/images/gents_asli_sona.jpg';
                 }}
-                alt="Gents Kurta Shalwar"
+                alt="Gents Handcrafted Wool Shadar"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />

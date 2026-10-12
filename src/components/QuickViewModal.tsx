@@ -101,6 +101,13 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
             >
               <img
                 src={product.images[selectedImageIndex] || product.images[0]}
+                onError={(e) => {
+                  const fallback =
+                    product.gender === 'ladies'
+                      ? '/images/ladies_bin_saeed.jpg'
+                      : '/images/gents_wool_shadar.jpg';
+                  (e.target as HTMLImageElement).src = fallback;
+                }}
                 alt={product.name}
                 referrerPolicy="no-referrer"
                 style={{
@@ -134,6 +141,13 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
                   >
                     <img
                       src={img}
+                      onError={(e) => {
+                        const fallback =
+                          product.gender === 'ladies'
+                            ? '/images/ladies_bin_saeed.jpg'
+                            : '/images/gents_wool_shadar.jpg';
+                        (e.target as HTMLImageElement).src = fallback;
+                      }}
                       alt=""
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"

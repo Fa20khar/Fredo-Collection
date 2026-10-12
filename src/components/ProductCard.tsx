@@ -49,8 +49,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             onError={(e) => {
               const fallback =
                 product.gender === 'ladies'
-                  ? 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80'
-                  : 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80';
+                  ? '/images/ladies_bin_saeed.jpg'
+                  : '/images/gents_wool_shadar.jpg';
               (e.target as HTMLImageElement).src = fallback;
             }}
             alt={product.name}

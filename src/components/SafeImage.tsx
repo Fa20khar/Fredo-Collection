@@ -15,10 +15,10 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   const [currentSrc, setCurrentSrc] = useState<string | undefined>(src);
   const [hasError, setHasError] = useState(false);
 
-  // Default elegant South Asian fashion fallback
+  // Default elegant real fashion fallback
   const defaultFallback =
     fallbackSrc ||
-    'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80';
+    '/images/ladies_bin_saeed.jpg';
 
   const handleError = () => {
     if (currentSrc !== defaultFallback) {
