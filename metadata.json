@@ -1,0 +1,6 @@
+{
+  "name": "Fredo's Collection",
+  "description": "Premium Pakistani ladies and gents clothing brand featuring traditional and contemporary fashion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
