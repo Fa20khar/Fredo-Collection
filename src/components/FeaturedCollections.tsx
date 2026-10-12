@@ -35,6 +35,10 @@ export const FeaturedCollections: React.FC = () => {
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <img
                     src={col.image}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80';
+                    }}
                     alt={col.title}
                     referrerPolicy="no-referrer"
                     loading="lazy"

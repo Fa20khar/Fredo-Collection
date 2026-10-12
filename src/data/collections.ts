@@ -14,7 +14,7 @@ export const collections: CollectionItem[] = [
     title: 'Elegant Embroidery',
     subtitle: 'Heritage Needlework',
     description: 'Intricately embroidered Dhanak and chiffon ensembles with artisanal thread details.',
-    image: '/src/assets/images/ladies_embroidered_suit_1791770714880.jpg',
+    image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80',
     categoryFilter: 'embroidered-suits',
     genderFilter: 'ladies',
   },
@@ -23,7 +23,7 @@ export const collections: CollectionItem[] = [
     title: 'Classic Men\'s Wear',
     subtitle: 'Dignified Sophistication',
     description: 'Impeccably tailored Kurta Shalwar suits and waistcoats for the modern Pakistani gentleman.',
-    image: '/src/assets/images/gents_kurta_shalwar_1791770727089.jpg',
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
     categoryFilter: 'kurta-shalwar',
     genderFilter: 'gents',
   },
@@ -32,7 +32,7 @@ export const collections: CollectionItem[] = [
     title: 'Festive Collection',
     subtitle: 'Celebrations & Weddings',
     description: 'Opulent color palettes, gold tilla trims, and bespoke party wear designed to turn heads.',
-    image: '/src/assets/images/hero_editorial_pakistani_1791770700977.jpg',
+    image: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80',
     genderFilter: 'ladies',
   },
   {
@@ -40,7 +40,7 @@ export const collections: CollectionItem[] = [
     title: 'Winter Warmth',
     subtitle: 'Seasonal Wool & Khaddar',
     description: 'Luxurious Pashmina shawls, Palachi velvet wraps, and warm winter Khaddar fabrics.',
-    image: '/src/assets/images/mens_wool_shawl_1791770803872.jpg',
+    image: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=800&q=80',
     genderFilter: 'all',
   },
   {
@@ -48,7 +48,7 @@ export const collections: CollectionItem[] = [
     title: 'Everyday Essentials',
     subtitle: 'Comfort Meets Style',
     description: 'Breezy lawn suits, daily casual kurtas, and easy-care fabrics for effortless style.',
-    image: '/src/assets/images/ladies_printed_lawn_1791770740917.jpg',
+    image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80',
     genderFilter: 'all',
   },
   {
@@ -56,7 +56,7 @@ export const collections: CollectionItem[] = [
     title: 'New Season Arrivals',
     subtitle: 'Fresh Off The Loom',
     description: 'The latest drops inspired by modern runway trends and enduring cultural roots.',
-    image: '/src/assets/images/gents_waistcoat_suit_1791770756076.jpg',
+    image: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=800&q=80',
     genderFilter: 'all',
   },
 ];

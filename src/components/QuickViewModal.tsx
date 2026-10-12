@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { X, Heart, ShoppingBag, MessageSquare, Check, ArrowRight } from 'lucide-react';
+import { X, Heart, ShoppingBag, MessageSquare, Check, ArrowRight, Ruler } from 'lucide-react';
 import { Product } from '../data/products';
 import { formatPKR } from '../utils/currency';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { generateProductInquiryUrl } from '../utils/whatsapp';
+import { SizeGuideModal } from './SizeGuideModal';
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -23,6 +24,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [validationError, setValidationError] = useState('');
   const [justAdded, setJustAdded] = useState(false);
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -144,14 +146,22 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
                 <div><strong className="text-neutral-800">Pieces:</strong> {product.pieces}</div>
               </div>
 
-              {/* Sizes Selection */}
+              {/* Sizes Selection & Size Guide */}
               <div>
                 <div className="flex items-center justify-between text-xs font-medium text-neutral-700 mb-2">
-                  <span>Available Sizes</span>
-                  {validationError && (
-                    <span className="text-[#B42318] font-semibold">{validationError}</span>
-                  )}
+                  <span>Available Sizes: <strong className="text-[#173D32]">{selectedSize || 'Choose size'}</strong></span>
+                  <button
+                    type="button"
+                    onClick={() => setIsSizeGuideOpen(true)}
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#173D32] hover:text-[#C6A36A] underline underline-offset-2 transition-colors cursor-pointer"
+                  >
+                    <Ruler className="w-3 h-3" />
+                    <span>Size Guide</span>
+                  </button>
                 </div>
+                {validationError && (
+                  <div className="text-[#B42318] font-semibold text-xs mb-2">{validationError}</div>
+                )}
                 <div className="flex flex-wrap gap-2">
                   {product.availableSizes.map((size) => (
                     <button
@@ -276,6 +286,13 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
           </div>
         </div>
       </div>
+
+      {/* Sizing Measurement Table Modal */}
+      <SizeGuideModal
+        isOpen={isSizeGuideOpen}
+        onClose={() => setIsSizeGuideOpen(false)}
+        defaultGender={product.gender}
+      />
     </div>
   );
 };

@@ -86,8 +86,13 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-neutral-400">
               <li>
+                <Link to="/support" className="hover:text-white transition-colors">
+                  Customer Support & FAQs
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="hover:text-white transition-colors">
-                  Contact Support
+                  Contact & Inquiries
                 </Link>
               </li>
               <li>
@@ -101,12 +106,12 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={() => setActiveModal('faq')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <Link
+                  to="/support"
+                  className="hover:text-white transition-colors text-left"
                 >
-                  Frequently Asked Questions
-                </button>
+                  Size & Measurement Guides
+                </Link>
               </li>
               <li>
                 <button

@@ -10,6 +10,7 @@ import {
   Check,
   ChevronRight,
   Sparkles,
+  Ruler,
 } from 'lucide-react';
 import { products, Product } from '../data/products';
 import { storeConfig } from '../data/config';
@@ -18,6 +19,7 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { ProductCard } from '../components/ProductCard';
 import { QuickViewModal } from '../components/QuickViewModal';
+import { SizeGuideModal } from '../components/SizeGuideModal';
 import { generateProductInquiryUrl } from '../utils/whatsapp';
 
 export const ProductDetails: React.FC = () => {
@@ -34,6 +36,7 @@ export const ProductDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'description' | 'care' | 'delivery'>('description');
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [justAdded, setJustAdded] = useState(false);
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
@@ -132,6 +135,13 @@ export const ProductDetails: React.FC = () => {
             <div className="relative aspect-3/4 rounded-xl overflow-hidden bg-[#F8F6F2] border border-[#E8E4DD] shadow-sm">
               <img
                 src={product.images[selectedImageIndex] || product.images[0]}
+                onError={(e) => {
+                  const fallback =
+                    product.gender === 'ladies'
+                      ? 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80'
+                      : 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80';
+                  (e.target as HTMLImageElement).src = fallback;
+                }}
                 alt={product.name}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-top transition-transform duration-500"
@@ -161,6 +171,10 @@ export const ProductDetails: React.FC = () => {
                   >
                     <img
                       src={img}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=400&q=80';
+                      }}
                       alt={`${product.name} preview ${idx + 1}`}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
@@ -213,14 +227,22 @@ export const ProductDetails: React.FC = () => {
               </div>
             </div>
 
-            {/* Size Selector */}
+            {/* Size Selector & Size Guide */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs font-medium text-neutral-800">
                 <span>Select Size / Cut: <span className="font-bold text-[#173D32]">{selectedSize || 'None chosen'}</span></span>
-                {validationError && (
-                  <span className="text-[#B42318] font-semibold text-xs">{validationError}</span>
-                )}
+                <button
+                  type="button"
+                  onClick={() => setIsSizeGuideOpen(true)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#173D32] hover:text-[#C6A36A] transition-colors underline underline-offset-4 cursor-pointer"
+                >
+                  <Ruler className="w-3.5 h-3.5" />
+                  <span>Size Guide & Table</span>
+                </button>
               </div>
+              {validationError && (
+                <span className="text-[#B42318] font-semibold text-xs block">{validationError}</span>
+              )}
 
               <div className="flex flex-wrap gap-2">
                 {product.availableSizes.map((size) => (
@@ -452,6 +474,13 @@ export const ProductDetails: React.FC = () => {
         product={quickViewProduct}
         isOpen={!!quickViewProduct}
         onClose={() => setQuickViewProduct(null)}
+      />
+
+      {/* Sizing Measurement Table Modal */}
+      <SizeGuideModal
+        isOpen={isSizeGuideOpen}
+        onClose={() => setIsSizeGuideOpen(false)}
+        defaultGender={product.gender}
       />
     </div>
   );

@@ -117,7 +117,11 @@ export const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="relative aspect-4/3 sm:aspect-16/10 lg:aspect-4/3 rounded-xl overflow-hidden shadow-md">
               <img
-                src="/src/assets/images/hero_editorial_pakistani_1791770700977.jpg"
+                src="/images/hero.jpg"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80';
+                }}
                 alt="Fredo's Collection Brand Story"
                 referrerPolicy="no-referrer"
                 loading="lazy"

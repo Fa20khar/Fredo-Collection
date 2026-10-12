@@ -74,6 +74,13 @@ export const ShopByCategory: React.FC = () => {
               <div className="relative aspect-4/3 w-full overflow-hidden bg-neutral-100">
                 <img
                   src={category.image}
+                  onError={(e) => {
+                    const fallback =
+                      category.gender === 'ladies'
+                        ? 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80'
+                        : 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80';
+                    (e.target as HTMLImageElement).src = fallback;
+                  }}
                   alt={category.name}
                   referrerPolicy="no-referrer"
                   loading="lazy"

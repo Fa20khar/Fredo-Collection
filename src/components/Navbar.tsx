@@ -33,6 +33,7 @@ export const Navbar: React.FC = () => {
     { label: 'Gents', path: '/shop?gender=gents' },
     { label: 'New Arrivals', path: '/shop?filter=new' },
     { label: 'Sale', path: '/shop?filter=sale' },
+    { label: 'Support & FAQs', path: '/support' },
     { label: 'About Us', path: '/about' },
     { label: 'Contact', path: '/contact' },
   ];

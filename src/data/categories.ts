@@ -14,7 +14,7 @@ export const categories: CategoryItem[] = [
     name: 'Unstitched Suits',
     gender: 'ladies',
     description: 'Premium Dhanak, Lawn, and Linen unstitched 3-piece fabrics crafted for custom tailoring.',
-    image: '/src/assets/images/ladies_printed_lawn_1791770740917.jpg',
+    image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=800&q=80',
     itemCount: 14,
   },
   {
@@ -22,7 +22,7 @@ export const categories: CategoryItem[] = [
     name: 'Embroidered Suits',
     gender: 'ladies',
     description: 'Intricate thread embroidery and gold tilla work on luxury seasonal fabrics.',
-    image: '/src/assets/images/ladies_embroidered_suit_1791770714880.jpg',
+    image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80',
     itemCount: 18,
   },
   {
@@ -30,7 +30,7 @@ export const categories: CategoryItem[] = [
     name: 'Ready-to-Wear',
     gender: 'ladies',
     description: 'Stitched to perfection with flattering silhouettes and refined Pakistani cuts.',
-    image: '/src/assets/images/hero_editorial_pakistani_1791770700977.jpg',
+    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
     itemCount: 10,
   },
   {
@@ -38,7 +38,7 @@ export const categories: CategoryItem[] = [
     name: 'Casual Wear',
     gender: 'ladies',
     description: 'Comfortable printed kurtis and lightweight breathable summer-winter cottons.',
-    image: '/src/assets/images/ladies_printed_lawn_1791770740917.jpg',
+    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80',
     itemCount: 12,
   },
   {
@@ -46,7 +46,7 @@ export const categories: CategoryItem[] = [
     name: 'Formal Wear',
     gender: 'ladies',
     description: 'Festive occasion wear with hand embellishments, sequins, and organza dupattas.',
-    image: '/src/assets/images/hero_editorial_pakistani_1791770700977.jpg',
+    image: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80',
     itemCount: 8,
   },
   {
@@ -54,7 +54,7 @@ export const categories: CategoryItem[] = [
     name: 'Shawls and Dupattas',
     gender: 'ladies',
     description: 'Opulent Palachi velvet shawls, Pashmina wraps, and embroidered borders.',
-    image: '/src/assets/images/ladies_velvet_shawl_1791770817343.jpg',
+    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80',
     itemCount: 16,
   },
 
@@ -64,7 +64,7 @@ export const categories: CategoryItem[] = [
     name: 'Kurta Shalwar',
     gender: 'gents',
     description: 'Timeless traditional suits in classic Pakistani silhouettes with band collar details.',
-    image: '/src/assets/images/gents_kurta_shalwar_1791770727089.jpg',
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
     itemCount: 16,
   },
   {
@@ -72,7 +72,7 @@ export const categories: CategoryItem[] = [
     name: 'Men\'s Unstitched Fabric',
     gender: 'gents',
     description: 'Export-quality Latha, Boski, Wash & Wear, and pure Egyptian cotton fabric lengths.',
-    image: '/src/assets/images/gents_kurta_shalwar_1791770727089.jpg',
+    image: 'https://images.unsplash.com/photo-1626307416562-ee839676f5fc?auto=format&fit=crop&w=800&q=80',
     itemCount: 12,
   },
   {
@@ -80,7 +80,7 @@ export const categories: CategoryItem[] = [
     name: 'Casual Wear',
     gender: 'gents',
     description: 'Everyday comfortable short kurtas and soft spun cotton shirts for relaxed elegance.',
-    image: '/src/assets/images/mens_cotton_kurta_1791770830065.jpg',
+    image: 'https://images.unsplash.com/photo-1520975954732-35dd22299614?auto=format&fit=crop&w=800&q=80',
     itemCount: 10,
   },
   {
@@ -88,7 +88,7 @@ export const categories: CategoryItem[] = [
     name: 'Formal Wear',
     gender: 'gents',
     description: 'Prestigious sherwanis, prince coats, and structured celebratory ensembles.',
-    image: '/src/assets/images/gents_waistcoat_suit_1791770756076.jpg',
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
     itemCount: 7,
   },
   {
@@ -96,7 +96,7 @@ export const categories: CategoryItem[] = [
     name: 'Waistcoats',
     gender: 'gents',
     description: 'Tailored raw silk, suiting, and jacquard waistcoats that elevate traditional attire.',
-    image: '/src/assets/images/gents_waistcoat_suit_1791770756076.jpg',
+    image: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=800&q=80',
     itemCount: 9,
   },
   {
@@ -104,7 +104,7 @@ export const categories: CategoryItem[] = [
     name: 'Winter Collection',
     gender: 'gents',
     description: 'Heavy winter Khaddar, blended wool suits, and Kashmiri embroidered shawls.',
-    image: '/src/assets/images/mens_wool_shawl_1791770803872.jpg',
+    image: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=800&q=80',
     itemCount: 11,
   },
 ];

@@ -10,7 +10,10 @@ export const About: React.FC = () => {
       <div className="relative bg-[#173D32] text-white py-20 sm:py-28 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/src/assets/images/hero_editorial_pakistani_1791770700977.jpg"
+            src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1400&q=80"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/images/hero.jpg';
+            }}
             alt="Fredo's Collection Heritage"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover opacity-25"
@@ -54,7 +57,10 @@ export const About: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl overflow-hidden aspect-3/4 shadow-sm border border-[#E8E4DD]">
               <img
-                src="/src/assets/images/ladies_embroidered_suit_1791770714880.jpg"
+                src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/images/ladies_embroidered.jpg';
+                }}
                 alt="Ladies Embroidered Suit"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
@@ -62,7 +68,10 @@ export const About: React.FC = () => {
             </div>
             <div className="rounded-xl overflow-hidden aspect-3/4 shadow-sm border border-[#E8E4DD] mt-6">
               <img
-                src="/src/assets/images/gents_kurta_shalwar_1791770727089.jpg"
+                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/images/gents_kurta.jpg';
+                }}
                 alt="Gents Kurta Shalwar"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"

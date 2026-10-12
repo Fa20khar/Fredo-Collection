@@ -33,6 +33,7 @@
   - [x] `WhatsAppOrderModal`: Delivery address checkout form with dynamic WhatsApp message compilation.
   - [x] `WhatsAppFloatingButton`: Fixed support button with helpful tooltip.
   - [x] `NewsletterSection`: Frontend email demonstration form.
+  - [x] `FAQSection`: Interactive categorized FAQ accordion with live search, measurement tables (Ladies & Gents size charts), delivery timelines, and 7-day exchange policies.
   - [x] `Footer`: 4 columns with brand story, links, contact, and FAQ/Shipping/Returns dialogs.
 
 - [x] **Pages & Routing**

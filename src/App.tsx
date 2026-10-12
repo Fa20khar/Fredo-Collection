@@ -21,6 +21,7 @@ import { CartPage } from './pages/CartPage';
 import { WishlistPage } from './pages/WishlistPage';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
+import { Support } from './pages/Support';
 import { NotFound } from './pages/NotFound';
 
 export default function App() {
@@ -47,6 +48,8 @@ export default function App() {
                   <Route path="/wishlist" element={<WishlistPage />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/support" element={<Support />} />
+                  <Route path="/faqs" element={<Support />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </div>

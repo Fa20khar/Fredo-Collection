@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, MessageSquare, MapPin, Send, AlertCircle, Clock, CheckCircle2 } from 'lucide-react';
 import { storeConfig } from '../data/config';
 import { generateSupportWhatsAppUrl } from '../utils/whatsapp';
+import { FAQSection } from '../components/FAQSection';
 
 export const Contact: React.FC = () => {
   const [name, setName] = useState('');
@@ -312,6 +313,11 @@ export const Contact: React.FC = () => {
             </form>
           </div>
         </div>
+      </div>
+
+      {/* Frequently Asked Questions Section */}
+      <div id="faqs" className="border-t border-[#E8E4DD]">
+        <FAQSection />
       </div>
     </div>
   );
