@@ -160,6 +160,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Waist</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Hips</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Shoulder</th>
+                      <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Sleeve Length</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Shirt Length</th>
                     </tr>
                   </thead>
@@ -170,6 +171,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(34)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(40)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(14.5)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(21.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(39)}</td>
                     </tr>
                     <tr className="hover:bg-[#F8F6F2]/50 bg-[#F8F6F2]/30">
@@ -178,6 +180,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(36)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(43)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(15)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(22)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(40)}</td>
                     </tr>
                     <tr className="hover:bg-[#F8F6F2]/50">
@@ -186,6 +189,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(40)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(47)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(15.5)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(22.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(41)}</td>
                     </tr>
                     <tr className="hover:bg-[#F8F6F2]/50 bg-[#F8F6F2]/30">
@@ -194,6 +198,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(43)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(50)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(16.5)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(23)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(42)}</td>
                     </tr>
                   </tbody>
@@ -229,6 +234,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Chest</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Collar / Band</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Shoulder</th>
+                      <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Sleeve Length</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Kurta Length</th>
                       <th className="px-4 py-3 font-bold text-neutral-800 uppercase text-center">Shalwar Length</th>
                     </tr>
@@ -239,6 +245,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatRange(38, 39)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(14.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(17.5)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(23.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(40)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(40)}</td>
                     </tr>
@@ -247,6 +254,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatRange(40, 41)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(15)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(18)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(24.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(42)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(42)}</td>
                     </tr>
@@ -255,6 +263,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatRange(42, 44)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(15.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(19)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(25.5)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(44)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(43)}</td>
                     </tr>
@@ -263,6 +272,7 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                       <td className="px-4 py-3 text-center tabular-nums">{formatRange(45, 47)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(16)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(20)}</td>
+                      <td className="px-4 py-3 text-center tabular-nums font-semibold text-[#173D32]">{formatVal(26)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(45)}</td>
                       <td className="px-4 py-3 text-center tabular-nums">{formatVal(44)}</td>
                     </tr>

@@ -46,7 +46,13 @@
   - [x] `Contact.tsx`: Direct lines, WhatsApp launcher, contact form.
   - [x] `NotFound.tsx`: 404 error page.
 
+- [x] **Storefront UX Enhancements**
+  - [x] `SizeGuideModal`: Comprehensive ladies' and gents' measurement guide with inches/cm toggle, chest, length, and sleeve measurements (accessible from PDP, QuickViewModal, and Footer).
+  - [x] **Product Sorting**: Multi-criteria catalog sorting (Featured, Newest Drops, Price: Low to High, Price: High to Low, Highest Discount %, A-Z, Z-A) with one-click quick sort pills.
+  - [x] **Home Fresh Arrivals Controls**: Interactive category tabs (All, Ladies, Gents, Sale, New In) and live sorting directly on the homepage showcase.
+  - [x] **VIP Newsletter Signup**: Integrated newsletter system with 10% OFF voucher coupon code (`FREDO10`), clipboard copy, shopping department preferences, and `localStorage` persistence in both `NewsletterSection` and `Footer`.
+  - [x] **High-Resolution Product Gallery Hover-to-Zoom**: Built `ProductGallery` with interactive cursor-tracking magnification lens (2x, 2.6x, 3.2x zoom levels), photo navigation arrows, active thumbnail strip, and full-screen high-resolution lightbox with panning and keyboard shortcuts on `ProductDetails` and `QuickViewModal`.
+
 ## Future Enhancements
-- [ ] Add customer measurement size chart guide (inches / cm) modal for unstitched vs stitched garments.
-- [ ] Add fabric swatch high-resolution zoom magnifier on PDP.
 - [ ] Support custom gift packaging selection in cart.
+- [ ] Customer review photo submission gallery.

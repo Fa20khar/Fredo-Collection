@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { X, Heart, ShoppingBag, MessageSquare, Check, ArrowRight, Ruler } from 'lucide-react';
+import { X, Heart, ShoppingBag, MessageSquare, Check, ArrowRight, Ruler, ZoomIn } from 'lucide-react';
 import { Product } from '../data/products';
 import { formatPKR } from '../utils/currency';
 import { useCart } from '../context/CartContext';
@@ -25,6 +25,9 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
   const [validationError, setValidationError] = useState('');
   const [justAdded, setJustAdded] = useState(false);
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
+  const [imageZoomPos, setImageZoomPos] = useState({ x: 50, y: 50 });
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (product) {
@@ -82,13 +85,40 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, isOpen,
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left Column: Image & Gallery */}
           <div className="bg-[#F8F6F2] p-6 flex flex-col justify-between">
-            <div className="relative aspect-3/4 rounded-lg overflow-hidden bg-white shadow-xs">
+            <div
+              ref={imageContainerRef}
+              onMouseMove={(e) => {
+                if (!imageContainerRef.current) return;
+                const rect = imageContainerRef.current.getBoundingClientRect();
+                const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+                const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+                setImageZoomPos({ x, y });
+              }}
+              onMouseEnter={() => setIsImageHovered(true)}
+              onMouseLeave={() => setIsImageHovered(false)}
+              className="relative aspect-3/4 rounded-lg overflow-hidden bg-white shadow-xs cursor-crosshair select-none"
+              title="Hover to zoom fabric detail"
+            >
               <img
                 src={product.images[selectedImageIndex] || product.images[0]}
                 alt={product.name}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top"
+                style={{
+                  transformOrigin: `${imageZoomPos.x}% ${imageZoomPos.y}%`,
+                  transform: isImageHovered ? 'scale(2.2)' : 'scale(1)',
+                  transition: isImageHovered ? 'transform 0.08s ease-out' : 'transform 0.3s ease-out',
+                }}
+                className="w-full h-full object-cover object-top pointer-events-none will-change-transform"
               />
+
+              <div
+                className={`absolute bottom-2 left-2 inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium backdrop-blur-xs transition-opacity duration-200 pointer-events-none ${
+                  isImageHovered ? 'bg-[#173D32]/90 text-white' : 'bg-black/50 text-white/90'
+                }`}
+              >
+                <ZoomIn className="w-3 h-3 text-[#C6A36A]" />
+                <span>{isImageHovered ? '2.2x Zoom' : 'Hover to zoom'}</span>
+              </div>
             </div>
 
             {/* Thumbnail selector */}

@@ -19,7 +19,9 @@ export const Shop: React.FC = () => {
   const [selectedGender, setSelectedGender] = useState<'all' | 'ladies' | 'gents'>(initialGender);
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch);
-  const [sortBy, setSortBy] = useState<'featured' | 'price-low' | 'price-high' | 'newest'>('featured');
+  const [sortBy, setSortBy] = useState<
+    'featured' | 'price-low' | 'price-high' | 'newest' | 'name-asc' | 'name-desc' | 'discount'
+  >('featured');
   const [priceMax, setPriceMax] = useState<number>(6000);
   const [selectedSize, setSelectedSize] = useState<string>('all');
   const [onlyInStock, setOnlyInStock] = useState<boolean>(false);
@@ -38,6 +40,7 @@ export const Shop: React.FC = () => {
     if (s) setSearchQuery(s);
     const f = searchParams.get('filter');
     if (f === 'new') setSortBy('newest');
+    if (f === 'sale') setSortBy('discount');
   }, [searchParams]);
 
   // Available unique sizes in current inventory
@@ -85,6 +88,13 @@ export const Shop: React.FC = () => {
       if (sortBy === 'price-low') return a.price - b.price;
       if (sortBy === 'price-high') return b.price - a.price;
       if (sortBy === 'newest') return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
+      if (sortBy === 'name-asc') return a.name.localeCompare(b.name);
+      if (sortBy === 'name-desc') return b.name.localeCompare(a.name);
+      if (sortBy === 'discount') {
+        const discA = a.originalPrice ? (a.originalPrice - a.price) / a.originalPrice : 0;
+        const discB = b.originalPrice ? (b.originalPrice - b.price) / b.originalPrice : 0;
+        return discB - discA;
+      }
       return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
     });
   }, [selectedGender, selectedCategory, searchQuery, sortBy, priceMax, selectedSize, onlyInStock, initialFilter]);
@@ -137,7 +147,7 @@ export const Shop: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Top Control Bar: Search & Sort */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E4DD]">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-4 border-b border-[#E8E4DD]">
           {/* Search Bar */}
           <div className="relative flex-1 max-w-md">
             <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3" />
@@ -175,15 +185,91 @@ export const Shop: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="px-3 py-2 border border-[#E8E4DD] rounded-lg bg-white text-neutral-800 text-xs font-medium focus:outline-hidden focus:border-[#173D32]"
+                className="px-3 py-2 border border-[#E8E4DD] rounded-lg bg-white text-neutral-800 text-xs font-medium focus:outline-hidden focus:border-[#173D32] cursor-pointer shadow-xs"
               >
-                <option value="featured">Featured & Popular</option>
+                <option value="featured">Featured & Curated</option>
                 <option value="newest">Newest Drops</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
+                <option value="discount">Highest Discount (% Off)</option>
+                <option value="name-asc">Name: A to Z</option>
+                <option value="name-desc">Name: Z to A</option>
               </select>
             </div>
           </div>
+        </div>
+
+        {/* Quick Sort & Quick Filter Chips Strip */}
+        <div className="py-3 overflow-x-auto flex items-center gap-2 border-b border-[#E8E4DD]/60 mb-2">
+          <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider shrink-0 mr-1">
+            Quick Sort:
+          </span>
+          <button
+            type="button"
+            onClick={() => setSortBy('featured')}
+            className={`px-3 py-1 text-xs rounded-full border transition-all shrink-0 cursor-pointer ${
+              sortBy === 'featured'
+                ? 'bg-[#173D32] text-white border-[#173D32] font-semibold'
+                : 'bg-white text-neutral-600 border-[#E8E4DD] hover:border-neutral-400'
+            }`}
+          >
+            Featured
+          </button>
+          <button
+            type="button"
+            onClick={() => setSortBy('newest')}
+            className={`px-3 py-1 text-xs rounded-full border transition-all shrink-0 cursor-pointer ${
+              sortBy === 'newest'
+                ? 'bg-[#173D32] text-white border-[#173D32] font-semibold'
+                : 'bg-white text-neutral-600 border-[#E8E4DD] hover:border-neutral-400'
+            }`}
+          >
+            New Arrivals
+          </button>
+          <button
+            type="button"
+            onClick={() => setSortBy('price-low')}
+            className={`px-3 py-1 text-xs rounded-full border transition-all shrink-0 cursor-pointer ${
+              sortBy === 'price-low'
+                ? 'bg-[#173D32] text-white border-[#173D32] font-semibold'
+                : 'bg-white text-neutral-600 border-[#E8E4DD] hover:border-neutral-400'
+            }`}
+          >
+            Price: Low to High
+          </button>
+          <button
+            type="button"
+            onClick={() => setSortBy('price-high')}
+            className={`px-3 py-1 text-xs rounded-full border transition-all shrink-0 cursor-pointer ${
+              sortBy === 'price-high'
+                ? 'bg-[#173D32] text-white border-[#173D32] font-semibold'
+                : 'bg-white text-neutral-600 border-[#E8E4DD] hover:border-neutral-400'
+            }`}
+          >
+            Price: High to Low
+          </button>
+          <button
+            type="button"
+            onClick={() => setSortBy('discount')}
+            className={`px-3 py-1 text-xs rounded-full border transition-all shrink-0 cursor-pointer ${
+              sortBy === 'discount'
+                ? 'bg-[#B42318] text-white border-[#B42318] font-semibold'
+                : 'bg-white text-red-700 border-red-200 hover:border-red-300'
+            }`}
+          >
+            Special Offers %
+          </button>
+          <button
+            type="button"
+            onClick={() => setSortBy('name-asc')}
+            className={`px-3 py-1 text-xs rounded-full border transition-all shrink-0 cursor-pointer ${
+              sortBy === 'name-asc'
+                ? 'bg-[#173D32] text-white border-[#173D32] font-semibold'
+                : 'bg-white text-neutral-600 border-[#E8E4DD] hover:border-neutral-400'
+            }`}
+          >
+            A–Z
+          </button>
         </div>
 
         {/* Main Content Layout */}

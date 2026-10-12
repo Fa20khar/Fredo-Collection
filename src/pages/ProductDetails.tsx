@@ -20,6 +20,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { ProductCard } from '../components/ProductCard';
 import { QuickViewModal } from '../components/QuickViewModal';
 import { SizeGuideModal } from '../components/SizeGuideModal';
+import { ProductGallery } from '../components/ProductGallery';
 import { generateProductInquiryUrl } from '../utils/whatsapp';
 
 export const ProductDetails: React.FC = () => {
@@ -28,7 +29,6 @@ export const ProductDetails: React.FC = () => {
 
   const product = products.find((p) => p.id === id);
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
@@ -44,7 +44,6 @@ export const ProductDetails: React.FC = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (product) {
-      setSelectedImageIndex(0);
       setSelectedSize(product.availableSizes[0] || '');
       setSelectedColor(product.availableColors[0] || '');
       setQuantity(1);
@@ -130,60 +129,13 @@ export const ProductDetails: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
         {/* Main PDP Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Left Column: Image Gallery */}
-          <div className="space-y-4">
-            <div className="relative aspect-3/4 rounded-xl overflow-hidden bg-[#F8F6F2] border border-[#E8E4DD] shadow-sm">
-              <img
-                src={product.images[selectedImageIndex] || product.images[0]}
-                onError={(e) => {
-                  const fallback =
-                    product.gender === 'ladies'
-                      ? 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80'
-                      : 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80';
-                  (e.target as HTMLImageElement).src = fallback;
-                }}
-                alt={product.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top transition-transform duration-500"
-              />
-
-              {product.onSale && (
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="text-xs font-semibold px-2.5 py-1 bg-[#B42318] text-white rounded-xs uppercase tracking-wider">
-                    Special Offer
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Gallery Thumbnails */}
-            {product.images.length > 1 && (
-              <div className="flex items-center gap-3 overflow-x-auto pb-2">
-                {product.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setSelectedImageIndex(idx)}
-                    className={`relative w-20 h-24 rounded-lg overflow-hidden border-2 transition-all shrink-0 bg-[#F8F6F2] ${
-                      selectedImageIndex === idx
-                        ? 'border-[#173D32] ring-2 ring-[#173D32]/20'
-                        : 'border-[#E8E4DD] opacity-75 hover:opacity-100'
-                    }`}
-                  >
-                    <img
-                      src={img}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=400&q=80';
-                      }}
-                      alt={`${product.name} preview ${idx + 1}`}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Left Column: Enhanced Image Gallery with Hover-to-Zoom */}
+          <ProductGallery
+            images={product.images}
+            productName={product.name}
+            onSale={product.onSale}
+            gender={product.gender}
+          />
 
           {/* Right Column: Contiguous Purchase Module */}
           <div className="space-y-6">

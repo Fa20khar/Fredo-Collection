@@ -1,14 +1,72 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, MessageSquare, X, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageSquare, X, ShieldCheck, Send, CheckCircle2, Ruler, Gift } from 'lucide-react';
 import { storeConfig } from '../data/config';
+import { SizeGuideModal } from './SizeGuideModal';
 
 export const Footer: React.FC = () => {
   const [activeModal, setActiveModal] = useState<'faq' | 'shipping' | 'returns' | null>(null);
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+  const [footerEmail, setFooterEmail] = useState('');
+  const [footerSubscribed, setFooterSubscribed] = useState(false);
+
+  const handleFooterSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!footerEmail || !footerEmail.includes('@')) return;
+    try {
+      localStorage.setItem('fredos_newsletter_email', footerEmail.trim().toLowerCase());
+    } catch {
+      // ignore
+    }
+    setFooterSubscribed(true);
+  };
 
   return (
-    <footer className="bg-[#171717] text-[#F8F6F2] pt-16 pb-12 border-t border-neutral-800">
+    <footer className="bg-[#171717] text-[#F8F6F2] pt-14 pb-12 border-t border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top Footer Banner: Newsletter & VIP Discount */}
+        <div className="mb-12 pb-10 border-b border-neutral-800 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl text-center lg:text-left">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#C6A36A] uppercase tracking-wider mb-1">
+              <Gift className="w-3.5 h-3.5" />
+              <span>Fredo's VIP Welcome Privilege</span>
+            </div>
+            <h4 className="font-serif text-xl sm:text-2xl font-medium text-white">
+              Get 10% Off Your Next WhatsApp Order
+            </h4>
+            <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+              Join our newsletter for early access to lawn catalogs, festive drops, and use promo code <strong className="text-[#C6A36A] font-mono">FREDO10</strong>.
+            </p>
+          </div>
+
+          <div className="w-full lg:w-auto shrink-0">
+            {footerSubscribed ? (
+              <div className="px-5 py-3 rounded-lg bg-emerald-950/60 border border-emerald-600/40 text-emerald-300 text-xs flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Subscribed! Use code <strong className="font-mono text-white">FREDO10</strong> on WhatsApp checkout.</span>
+              </div>
+            ) : (
+              <form onSubmit={handleFooterSubscribe} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto lg:mx-0">
+                <input
+                  type="email"
+                  value={footerEmail}
+                  onChange={(e) => setFooterEmail(e.target.value)}
+                  placeholder="Enter your email address..."
+                  className="px-4 py-2.5 rounded-lg bg-neutral-800 text-white placeholder:text-neutral-500 border border-neutral-700 text-xs focus:outline-hidden focus:border-[#C6A36A] w-full sm:w-64"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-5 py-2.5 bg-[#C6A36A] hover:bg-[#d6b782] text-neutral-900 font-bold text-xs rounded-lg flex items-center justify-center gap-1.5 transition-colors shrink-0 cursor-pointer shadow-xs"
+                >
+                  <span>Subscribe</span>
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-neutral-800">
           {/* Column 1: Brand */}
           <div className="space-y-4">
@@ -106,12 +164,14 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/support"
-                  className="hover:text-white transition-colors text-left"
+                <button
+                  type="button"
+                  onClick={() => setIsSizeGuideOpen(true)}
+                  className="hover:text-white transition-colors text-left cursor-pointer inline-flex items-center gap-1.5"
                 >
-                  Size & Measurement Guides
-                </Link>
+                  <Ruler className="w-3.5 h-3.5 text-[#C6A36A]" />
+                  <span>Size & Measurement Guides</span>
+                </button>
               </li>
               <li>
                 <button
@@ -248,6 +308,13 @@ export const Footer: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Direct Global Size Guide Modal */}
+      <SizeGuideModal
+        isOpen={isSizeGuideOpen}
+        onClose={() => setIsSizeGuideOpen(false)}
+        defaultGender="ladies"
+      />
     </footer>
   );
 };

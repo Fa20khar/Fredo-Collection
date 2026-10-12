@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Shield, HeartHandshake, Truck } from 'lucide-react';
+import { ArrowRight, Sparkles, Shield, HeartHandshake, Truck, SlidersHorizontal } from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { ShopByCategory } from '../components/ShopByCategory';
 import { FeaturedCollections } from '../components/FeaturedCollections';
@@ -11,9 +11,27 @@ import { products, Product } from '../data/products';
 
 export const Home: React.FC = () => {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const [homeCategory, setHomeCategory] = useState<'all' | 'ladies' | 'gents' | 'sale' | 'new'>('all');
+  const [homeSort, setHomeSort] = useState<'featured' | 'price-low' | 'price-high' | 'newest'>('featured');
 
-  // Fresh arrivals (at least 8 products as requested in Section 9)
-  const freshArrivals = products.slice(0, 8);
+  // Filtered and sorted products for Homepage
+  const displayedArrivals = useMemo(() => {
+    return products
+      .filter((p) => {
+        if (homeCategory === 'ladies') return p.gender === 'ladies';
+        if (homeCategory === 'gents') return p.gender === 'gents';
+        if (homeCategory === 'sale') return p.onSale;
+        if (homeCategory === 'new') return p.isNew;
+        return true;
+      })
+      .sort((a, b) => {
+        if (homeSort === 'price-low') return a.price - b.price;
+        if (homeSort === 'price-high') return b.price - a.price;
+        if (homeSort === 'newest') return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
+        return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
+      })
+      .slice(0, 8);
+  }, [homeCategory, homeSort]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -70,16 +88,16 @@ export const Home: React.FC = () => {
       {/* Shop by Category */}
       <ShopByCategory />
 
-      {/* Fresh Arrivals (Section 9) */}
+      {/* Fresh Arrivals (Section 9) with Category Tabs & Sorting */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
               <span className="text-xs font-semibold uppercase tracking-widest text-[#C6A36A]">
-                Just In
+                Curated Collection
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl font-medium text-[#171717] mt-1">
-                Fresh Arrivals
+                Fresh Arrivals & Best Sellers
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-lg">
                 Discover our latest season drop featuring embroidered Dhanak suits, luxury shawls, and tailored men's kurta wear.
@@ -90,14 +108,56 @@ export const Home: React.FC = () => {
               to="/shop?filter=new"
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#173D32] hover:text-[#C6A36A] transition-colors self-start sm:self-auto"
             >
-              <span>View All New Arrivals</span>
+              <span>Explore Complete Storefront</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          {/* 8 Product Cards Grid */}
+          {/* Interactive Category Tabs & Sort Bar */}
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 mb-8 border-b border-[#E8E4DD]">
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-1.5 bg-[#F8F6F2] p-1.5 rounded-xl border border-[#E8E4DD]">
+              {[
+                { id: 'all', label: 'All Items' },
+                { id: 'ladies', label: "Ladies' Collection" },
+                { id: 'gents', label: "Gents' Wear" },
+                { id: 'sale', label: 'Special Offers %' },
+                { id: 'new', label: 'New In' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setHomeCategory(tab.id as any)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                    homeCategory === tab.id
+                      ? 'bg-[#173D32] text-white shadow-xs'
+                      : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/60'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-2 text-xs self-end md:self-auto">
+              <span className="text-neutral-500 whitespace-nowrap">Sort by:</span>
+              <select
+                value={homeSort}
+                onChange={(e) => setHomeSort(e.target.value as any)}
+                className="px-3 py-1.5 border border-[#E8E4DD] rounded-lg bg-white text-neutral-800 text-xs font-medium focus:outline-hidden focus:border-[#173D32] cursor-pointer shadow-xs"
+              >
+                <option value="featured">Featured & Curated</option>
+                <option value="newest">Newest First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Product Cards Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {freshArrivals.map((product) => (
+            {displayedArrivals.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -105,6 +165,18 @@ export const Home: React.FC = () => {
               />
             ))}
           </div>
+
+          {displayedArrivals.length === 0 && (
+            <div className="py-16 text-center bg-[#F8F6F2] rounded-xl border border-[#E8E4DD]">
+              <p className="text-sm text-neutral-600">No items match the chosen filter.</p>
+              <button
+                onClick={() => setHomeCategory('all')}
+                className="mt-3 text-xs font-semibold text-[#173D32] underline"
+              >
+                Show All Items
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
